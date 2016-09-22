@@ -1,0 +1,47 @@
+<script type="text/javascript">
+  function onApiLoad()
+</script>
+<div class="card-panel">
+  <div class="row center-align">
+    <strong>
+      <h4 style="color:#9e9e9e;">New Homework</h4>
+    </strong>
+    <%= form_for @homework,:html => {:class => 'col s12'} do |f| %>
+      <% if @homework.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@homework.errors.count, "field") %> incorrect:</h2>
+          <ul>
+            <% @homework.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="row">
+        <div class="input-field col s8 offset-s2">
+          <p>
+            <%= f.label :title %><br>
+            <%= f.text_field :title %><br>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s8 offset-s2">
+          <p>
+            <%= f.label :content, :class => "center" %><br>
+            <%= f.text_area :content, :class => "materialize-textarea"%><br>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s8 offset-s2">
+          <p>
+            <%= f.label :file_link %><br>
+            <%= f.text_field :file_link %><br>
+            <center><%= f.submit :class => "btn waves-effect waves-light loads" %></center>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

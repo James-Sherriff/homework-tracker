@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Homework Tracker</title>
+    <%= javascript_include_tag "application"%>
+    <%= javascript_include_tag "https://apis.google.com/js/api.js?onload=onApiLoad"%>
+    <%= stylesheet_link_tag "application"%>
+    <%= stylesheet_link_tag "http://fonts.googleapis.com/icon?family=Material+Icons" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body style="background-color: WhiteSmoke">
+    <nav>
+      <div class="nav-wrapper teal">
+        <a href="<%= homeworks_path %>" style="margin-left: 0.5em" class="brand-logo"><strong>HOMEWORK TRACKER</strong></a>
+        <ul class="right hide-on-med-and-down">
+          <% if current_user %>
+            <li><a class="dropdown-button"data-hover = "true" data-beloworigin = "true" href="#" data-activates="dropdown1"><%= current_user.name %><i class="material-icons right">arrow_drop_down</i></a></li>
+          <% else %>
+            <li><a style="font-size: 1.3em" href="/auth/google_oauth2">Sign In</a>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+      <ul id="dropdown1" class="dropdown-content">
+        <li><a href="/signout">Sign Out</a></li>
+      </ul>
+      <div id="loading" style="display:none; position: fixed;" class="progress">
+        <div class="indeterminate"></div>
+      </div>
+      <div class="container">
+        <%= yield %>
+        <% if (!["new", "home", "edit"].include?(params[:action])) then %>
+          <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+            <a id="add-homework" class="btn-floating btn-large teal loads" href=<%= if(params[:action] == "show") then edit_homework_path else new_homework_path end%>>
+              <i class="large material-icons loads"><%=if(params[:action] == "show") then "mode_edit" else "note_add" end %></i>
+              </a>
+            </div>
+          <% end %>
+        </div>
+      </body>
+    </html>

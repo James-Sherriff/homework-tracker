@@ -1,0 +1,17 @@
+<div class="row">
+  <% if @homeworks.length > 0 then %>
+    <% @homeworks.each do |homework| %>
+      <div class="col s12 m5">
+        <a href="<%= homework_path(homework) %>">
+          <div class="card-panel hoverable">
+            <%= homework.title %>
+          </div>
+        </a>
+      </div>
+    <% end %>
+  <% else %>
+    <center><strong>
+        <h4 style="color:#9e9e9e;">You Dont Have Any Homework!</h4>
+      </strong></center>
+  <% end %>
+</div>
