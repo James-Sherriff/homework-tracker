@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'rails_12factor', group: :production
 gem 'pg'
 gem 'materialize-sass'
 gem 'omniauth-google-oauth2', '~> 0.2.1'
