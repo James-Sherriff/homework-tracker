@@ -2,15 +2,13 @@ class HomeworksController < ApplicationController
   
   def index
     if current_user then
-      @homeworks = User.where("uid = '" + "106217558654354167701" + "'")
-      @homework = Homework.find(1)
+      @homeworks = Homework.where("user = '" + "106217558654354167701" + "'")
     else
       redirect_to root_path
     end
   end
   
   def new
-    @homeworks = Homework.where("user = '" + "106217558654354167701" + "'")
     if current_user then
     @homework = Homework.new
     else
