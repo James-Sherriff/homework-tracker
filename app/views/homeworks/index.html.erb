@@ -1,4 +1,5 @@
 <div class="row">
+  <%= @homeworks.length %>
   <%= current_user.uid %>
   <% if @homeworks.length > 0 then %>
     <% @homeworks.each do |homework| %>
