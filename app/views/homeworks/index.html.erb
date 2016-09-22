@@ -4,8 +4,8 @@
       <div class="col s12 m5">
         <a href="<%= homework_path(homework) %>">
           <div class="card-panel hoverable">
-            <%= homework.title %>
-            <%= homework.user %>
+            <center><h5><%= homework.title %></h5></center><br>
+            <%= truncate(homework.content, :length => 17, :separator => ' ') %>
           </div>
         </a>
       </div>

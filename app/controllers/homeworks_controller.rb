@@ -2,7 +2,7 @@ class HomeworksController < ApplicationController
   
   def index
     if current_user then
-      @homeworks = Homework.where("user = '" + "106217558654354167701" + "'")
+      @homeworks = Homework.where(user: current_user.uid)
     else
       redirect_to root_path
     end
