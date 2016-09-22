@@ -1,12 +1,12 @@
 <div class="row">
   <%= current_user.uid %>
-  <%= @homeworks %>
   <% if @homeworks.length > 0 then %>
     <% @homeworks.each do |homework| %>
       <div class="col s12 m5">
         <a href="<%= homework_path(homework) %>">
           <div class="card-panel hoverable">
             <%= homework.title %>
+            <%= homework.user %>
           </div>
         </a>
       </div>

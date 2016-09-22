@@ -3,7 +3,7 @@ class HomeworksController < ApplicationController
   def index
     puts session[:user_id]
     if current_user then
-      @homeworks = Homework.where("user = ?", current_user.uid)
+      @homeworks = Homework.all
     else
       redirect_to root_path
     end
