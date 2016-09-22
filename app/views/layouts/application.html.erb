@@ -31,7 +31,7 @@
         <%= yield %>
         <% if (!["new", "home", "edit"].include?(params[:action])) then %>
           <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-            <a id="add-homework" class="btn-floating btn-large teal loads" href=<%= if(params[:action] == "show") then edit_homework_path else new_homework_path end%>>
+            <a id="add-homework" class="btn-floating btn-large teal loads" href="<%= if(params[:action] == "show") then edit_homework_path else new_homework_path end%>">
               <i class="large material-icons loads"><%=if(params[:action] == "show") then "mode_edit" else "note_add" end %></i>
               </a>
             </div>
