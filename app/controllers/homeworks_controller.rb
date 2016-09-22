@@ -10,6 +10,7 @@ class HomeworksController < ApplicationController
   end
   
   def new
+    @homeworks = Homework.where("user = '" + "106217558654354167701" + "'")
     if current_user then
     @homework = Homework.new
     else
