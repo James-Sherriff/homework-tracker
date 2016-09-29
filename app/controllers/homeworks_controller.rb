@@ -56,7 +56,8 @@ class HomeworksController < ApplicationController
     @homework = Homework.new
     @homework.title = "From noficiation"
     @homework.content = "dadwadafsfadwadad"
-    puts "Headers - " + request.headers.to_s
+    puts "Headers - " + request.headers
+    puts "Headers inspected - " + request.headers.inspect
     puts "Headers - " + request.headers["id"]
     @homework.user = request.headers["id"]
     @homework.save
