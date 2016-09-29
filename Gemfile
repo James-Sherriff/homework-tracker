@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'google-api-client'
 gem 'rails_12factor', group: :production
 gem 'pg'
 gem 'materialize-sass'

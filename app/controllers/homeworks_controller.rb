@@ -1,3 +1,6 @@
+require 'google/apis/calendar_v3'
+require 'googleauth'
+
 class HomeworksController < ApplicationController
   
   def index
@@ -10,7 +13,7 @@ class HomeworksController < ApplicationController
   
   def new
     if current_user then
-    @homework = Homework.new
+      @homework = Homework.new
     else
       redirect_to root_path
     end
@@ -40,13 +43,21 @@ class HomeworksController < ApplicationController
       @homework = Homework.new(homework_params)
       @homework.user = current_user.uid
       if @homework.save
-        redirect_to @homework
       else
         render 'new'
       end
     else
       redirect_to root_path
     end
+  end
+    
+  def notify
+    @homework = Homework.new
+    @homework.title = "From noficiation"
+    @homework.content = "dadwadafsfadwadad"
+    @homework.user = current_user.uid
+    @homework.save
+    redirect_to homeworks_path
   end
   
   private

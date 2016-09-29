@@ -18,3 +18,9 @@
 @import "materialize/components/color";
 $primary-color: color("blue", "lighten-2") !default;
 @import 'materialize';
+.cutoff {
+  line-height: 1.5em;
+  height: 1.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

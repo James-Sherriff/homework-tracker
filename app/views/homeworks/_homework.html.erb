@@ -1,0 +1,18 @@
+<% count = 1 %>
+<% @homeworks.each do |homework| %>
+  <% if@homeworks.length - count > 0 then %>
+    <div class="col s12 m4">
+    <% count = count + 1 %>
+  <% elsif @homeworks.length - count == 1 then %>
+    <div class="col s12 m6">
+  <% else %>
+    <div class="col s12 m12">
+  <% end %>
+    <a href="<%= homework_path(homework) %>">
+      <div class="card-panel hoverable">
+        <center><h5 class="cutoff"><%= homework.title %></h5></center><br>
+        <%= truncate(homework.content, :length => 17, :separator => ' ') %>
+      </div>
+    </a>
+  </div>
+<% end %>
