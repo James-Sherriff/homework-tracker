@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   
   get 'homeworks/:id/delete', to: 'homeworks#destroy'
   
+  post '/notifications', to: 'homeworks#notify'
   get '/notifications', to: 'homeworks#notify'
   get '/create_channel', to: 'pages#create_channel'
   
