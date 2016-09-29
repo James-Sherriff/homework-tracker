@@ -56,7 +56,7 @@ class HomeworksController < ApplicationController
     @homework = Homework.new
     @homework.title = "From noficiation"
     @homework.content = "dadwadafsfadwadad"
-    @homework.user = current_user.uid
+    @homework.user = request.headers["id"]
     @homework.save
     redirect_to homeworks_path
   end
