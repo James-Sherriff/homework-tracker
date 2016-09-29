@@ -50,7 +50,7 @@ class HomeworksController < ApplicationController
       redirect_to root_path
     end
   end
-    
+  skip_before_filter  :verify_authenticity_token
   def notify
     @homework = Homework.new
     @homework.title = "From noficiation"
