@@ -52,14 +52,13 @@ class HomeworksController < ApplicationController
   end
   skip_before_filter  :verify_authenticity_token
   def notify
-    puts params.inspect
     @homework = Homework.new
     @homework.title = "From noficiation"
     @homework.content = "dadwadafsfadwadad"
     puts "Headers - " + request.headers
-    puts "Headers inspected - " + request.headers.inspect
-    puts "Headers - " + request.headers.fetch("X-Goog-Channel-ID")
-    @homework.user = request.headers.fetch("X-Goog-Channel-ID")
+    puts "Headers inspected - " + request.headers.env
+    puts "Headers - " + request.headers.env.fetch("X-Goog-Channel-ID")
+    @homework.user = request.headers.env.fetch("X-Goog-Channel-ID")
     @homework.save
     redirect_to homeworks_path
   end
