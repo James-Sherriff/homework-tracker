@@ -56,7 +56,7 @@ class HomeworksController < ApplicationController
     @homework.title = "From noficiation"
     @homework.content = "dadwadafsfadwadad"
     puts "Headers - " + request.headers
-    puts "Headers inspected - " + request.headers.env
+    puts "Headers inspected - " + env.request.headers.to_s
     puts "Headers - " + request.headers.env.fetch("X-Goog-Channel-ID")
     @homework.user = request.headers.env.fetch("X-Goog-Channel-ID")
     @homework.save
