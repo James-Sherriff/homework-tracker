@@ -58,8 +58,8 @@ class HomeworksController < ApplicationController
     @homework.content = "dadwadafsfadwadad"
     puts "Headers - " + request.headers
     puts "Headers inspected - " + request.headers.inspect
-    puts "Headers - " + request.headers["id"]
-    @homework.user = request.headers["id"]
+    puts "Headers - " + request.headers.fetch("id")
+    @homework.user = request.headers.fetch("id")
     @homework.save
     redirect_to homeworks_path
   end
