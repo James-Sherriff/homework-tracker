@@ -73,10 +73,11 @@ class HomeworksController < ApplicationController
   end
   skip_before_filter  :verify_authenticity_token
   def notify
-    @user = User.find(request.headers["X-Goog-Channel-ID"].to_s)
+    #@user = User.find(request.headers["X-Goog-Channel-ID"].to_s)
+    puts "Notify"
     puts request.headers["X-Goog-Channel-ID"]
-    @user.calendar_sync_needed = true
-    @user.save!
+    #@user.calendar_sync_needed = true
+    #@user.save!
     redirect_to homeworks_path
   end
   
