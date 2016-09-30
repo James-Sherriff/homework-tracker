@@ -4,11 +4,11 @@ require 'googleauth'
 class HomeworksController < ApplicationController
   
   def index
-    service = Google::Apis::CalendarV3::CalendarService.new
-    service.client_options.application_name = "Homework Tracker"
-    service.authorization = current_user.oauth_token
-    channel = Google::Apis::CalendarV3::Channel.new(id: "homework-tracker-channel",resource_id: "rPJMUDI0rrHhdRs1ICk090xwU2k")
-    service.stop_channel(channel)
+    #service = Google::Apis::CalendarV3::CalendarService.new
+    #service.client_options.application_name = "Homework Tracker"
+    #service.authorization = current_user.oauth_token
+    #channel = Google::Apis::CalendarV3::Channel.new(id: "homework-tracker-channel",resource_id: "rPJMUDI0rrHhdRs1ICk090xwU2k")
+    #service.stop_channel(channel)
     if current_user then
       if(current_user.calendar_sync_needed) then
         if(!current_user.last_calendar_sync.nil?) then
