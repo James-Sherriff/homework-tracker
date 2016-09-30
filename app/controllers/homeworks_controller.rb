@@ -77,7 +77,7 @@ class HomeworksController < ApplicationController
     puts request.headers["X-Goog-Channel-ID"]
     @homework = Homework.new
     puts @homework.methods.inspect
-    #@user.calendar_sync_needed = true
+    outs @user.uid
     puts @user.methods.inspect
     @user.save!
     redirect_to homeworks_path
