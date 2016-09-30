@@ -75,7 +75,8 @@ class HomeworksController < ApplicationController
   def notify
     @user = User.where(uid: request.headers["X-Goog-Channel-ID"].to_s)
     puts request.headers["X-Goog-Channel-ID"]
-    @user.calendar_sync_needed = true
+    #@user.calendar_sync_needed = true
+    puts @user.methods.inspect
     @user.save!
     redirect_to homeworks_path
   end
