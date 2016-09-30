@@ -4,7 +4,10 @@ require 'googleauth'
 class HomeworksController < ApplicationController
   
   def index
-    puts Google::Apis::CalendarV3::Channel.methods.inspect
+    service = Google::Apis::CalendarV3::CalendarService.new
+    service.client_options.application_name = "Homework Tracker"
+    service.authorization = current_user.oauth_token
+    puts service.methods.inspect
     if current_user then
       if(current_user.calendar_sync_needed) then
         if(!current_user.last_calendar_sync.nil?) then
