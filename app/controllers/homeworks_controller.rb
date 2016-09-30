@@ -55,9 +55,7 @@ class HomeworksController < ApplicationController
     @homework = Homework.new
     @homework.title = "From noficiation"
     @homework.content = "dadwadafsfadwadad"
-    puts "Headers inspected - " + env.request.headers.to_s
-    puts "Headers - " + request.headers.env.fetch("X-Goog-Channel-ID")
-    @homework.user = request.headers.env.fetch("X-Goog-Channel-ID")
+    @homework.user = params[:X-Goog-Channel-ID]
     @homework.save
     redirect_to homeworks_path
   end
