@@ -56,8 +56,8 @@ class HomeworksController < ApplicationController
     @homework.title = "From noficiation"
     @homework.content = "dadwadafsfadwadad"
     puts params.inspect
-    puts "Without key - " + request.headers.to_s
-    puts "With key - " + request.headers["X-Goog-Channel-ID"].to_s
+    puts request.headers["X-Goog-Channel-ID"].to_s
+    puts request.headers["X-Goog-Resource-State"].to_s
     @homework.user = params["X-Goog-Channel-ID"]
     @homework.save
     redirect_to homeworks_path
