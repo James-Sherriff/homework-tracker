@@ -73,13 +73,13 @@ class HomeworksController < ApplicationController
   end
   skip_before_filter  :verify_authenticity_token
   def notify
-    @user = User.where(uid: request.headers["X-Goog-Channel-ID"].to_s)
+    @user = User.find_by(uid: request.headers["X-Goog-Channel-ID"].to_s)
     puts request.headers["X-Goog-Channel-ID"]
     @homework = Homework.new
     puts @homework.methods.inspect
-    outs @user.uid
+    puts @user.uid
     puts @user.methods.inspect
-    @user.save!
+    @user.save
     redirect_to homeworks_path
   end
   
