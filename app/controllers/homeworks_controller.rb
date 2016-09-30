@@ -7,7 +7,7 @@ class HomeworksController < ApplicationController
     service = Google::Apis::CalendarV3::CalendarService.new
     service.client_options.application_name = "Homework Tracker"
     service.authorization = current_user.oauth_token
-    channel = Google::Apis::CalendarV3::Channel.new(id: "homework-tracker-channel",resource_id: "primary")
+    channel = Google::Apis::CalendarV3::Channel.new(id: "homework-tracker-channel",resource_id: "rPJMUDI0rrHhdRs1ICk090xwU2k")
     service.stop_channel(channel)
     if current_user then
       if(current_user.calendar_sync_needed) then
@@ -73,7 +73,6 @@ class HomeworksController < ApplicationController
   end
   skip_before_filter  :verify_authenticity_token
   def notify
-    puts request.headers["X-Goog-Resource-ID"]
     @user = User.find(request.headers["X-Goog-Channel-ID"])
     @user.calendar_sync_needed = true
     @user.save!
