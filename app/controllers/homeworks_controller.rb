@@ -57,6 +57,8 @@ class HomeworksController < ApplicationController
     @homework.content = "dadwadafsfadwadad"
     puts request.headers["X-Goog-Channel-ID"].to_s
     puts request.headers["X-Goog-Resource-State"].to_s
+    result = client.get_event('primary', request.headers["X-Goog-Resource-ID"])
+    print result.summary
     @homework.user = request.headers["X-Goog-Channel-ID"].to_s
     @homework.save!
     redirect_to homeworks_path
