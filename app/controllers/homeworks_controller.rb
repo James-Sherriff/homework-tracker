@@ -76,7 +76,6 @@ class HomeworksController < ApplicationController
     @user = User.find_by(uid: request.headers["X-Goog-Channel-ID"].to_s)
     puts request.headers["X-Goog-Channel-ID"]
     @homework = Homework.new
-    puts @homework.methods.inspect
     puts @user.uid
     puts @user.methods.inspect
     @user.save
