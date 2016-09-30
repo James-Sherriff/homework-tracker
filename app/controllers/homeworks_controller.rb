@@ -4,6 +4,7 @@ require 'googleauth'
 class HomeworksController < ApplicationController
   
   def index
+    puts Google::Apis::CalendarV3::Channel.methods.inspect
     if current_user then
       if(current_user.calendar_sync_needed) then
         if(!current_user.last_calendar_sync.nil?) then
