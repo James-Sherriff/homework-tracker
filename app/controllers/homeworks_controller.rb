@@ -75,6 +75,8 @@ class HomeworksController < ApplicationController
   def notify
     @user = User.where(uid: request.headers["X-Goog-Channel-ID"].to_s)
     puts request.headers["X-Goog-Channel-ID"]
+          @homework = Homework.new(homework_params)
+    puts @homework.methods.inspect
     #@user.calendar_sync_needed = true
     puts @user.methods.inspect
     @user.save!
