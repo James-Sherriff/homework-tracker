@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   def create
     user = User.from_omniauth(env["omniauth.auth"])
     session[:user_id] = user.id
-    if(user.calendar_channel_active == false) then
+    if(!user.calendar_channel_active) then
       service = Google::Apis::CalendarV3::CalendarService.new
       service.client_options.application_name = "Homework Tracker"
       service.authorization = current_user.oauth_token
