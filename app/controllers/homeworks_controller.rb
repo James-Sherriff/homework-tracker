@@ -5,6 +5,22 @@ class HomeworksController < ApplicationController
   
   def index
     if current_user then
+      if(current_user.calendar_sync_needed) then
+        if(!current_user.last_calendar_sync.nil?) then
+          @time = current_user.last_calendar_sync
+        else
+          @time = Time.now.iso8601
+        end
+        puts "Running calendar sync"
+        service = Google::Apis::CalendarV3::CalendarService.new
+        service.client_options.application_name = "Homework Tracker"
+        service.authorization = current_user.oauth_token
+        @response = service.list_events(calendar_id,max_results: 10,single_events: true,order_by: 'startTime',time_min: @time)
+        puts @response
+        current_user.last_calendar_sync = Time.now.iso8601
+        current_user.calendar_sync_needed = false
+        current_user.save!
+      end
       @homeworks = Homework.where(user: current_user.uid)
     else
       redirect_to root_path
@@ -52,18 +68,9 @@ class HomeworksController < ApplicationController
   end
   skip_before_filter  :verify_authenticity_token
   def notify
-    @homework = Homework.new
-    @homework.title = "From noficiation"
-    @homework.content = "dadwadafsfadwadad"
-    puts request.headers["X-Goog-Channel-ID"].to_s
-    puts request.headers["X-Goog-Resource-State"].to_s
-    service = Google::Apis::CalendarV3::CalendarService.new
-    service.client_options.application_name = "Homework Tracker"
-    service.authorization = current_user.oauth_token
-    result = service.get_event('primary', request.headers["X-Goog-Resource-ID"])
-    print result.summary
-    @homework.user = request.headers["X-Goog-Channel-ID"].to_s
-    @homework.save!
+    @user = User.find(request-headers["X-Goog-Channel-ID"])
+    @user.calendar_sync_needed = true
+    @user.save!
     redirect_to homeworks_path
   end
   
