@@ -8,6 +8,7 @@ class HomeworksController < ApplicationController
     service.client_options.application_name = "Homework Tracker"
     service.authorization = current_user.oauth_token
     puts service.methods.inspect
+    service.stop_channel("homework-tracker-channel")
     if current_user then
       if(current_user.calendar_sync_needed) then
         if(!current_user.last_calendar_sync.nil?) then
