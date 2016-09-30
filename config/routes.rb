@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   
   post '/notifications', to: 'homeworks#notify'
   get '/notifications', to: 'homeworks#notify'
-  get '/create_channel', to: 'pages#create_channel'
   
   resources :homeworks
   resources :sessions, only: [:create, :destroy]
