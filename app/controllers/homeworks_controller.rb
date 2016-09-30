@@ -57,7 +57,10 @@ class HomeworksController < ApplicationController
     @homework.content = "dadwadafsfadwadad"
     puts request.headers["X-Goog-Channel-ID"].to_s
     puts request.headers["X-Goog-Resource-State"].to_s
-    result = client.get_event('primary', request.headers["X-Goog-Resource-ID"])
+    service = Google::Apis::CalendarV3::CalendarService.new
+    service.client_options.application_name = "Homework Tracker"
+    service.authorization = current_user.oauth_token
+    result = service.get_event('primary', request.headers["X-Goog-Resource-ID"])
     print result.summary
     @homework.user = request.headers["X-Goog-Channel-ID"].to_s
     @homework.save!
